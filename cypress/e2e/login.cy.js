@@ -48,7 +48,7 @@ describe('Login spec', () => {
         cy.get('input[type="email"]').type('Kevin1@gmail.com');
         cy.get('input[type="password"]').type('Kevin123!');
         cy.get('button').contains(/^Login$/).click();
-        cy.get('nav').contains(/^Home$/).should('be.visible');
+        cy.get('div[class="navigation"]').contains(/^Home$/).should('be.visible');
         cy.get('button').contains('Sign out').should('be.visible');
     });
 });

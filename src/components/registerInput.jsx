@@ -9,7 +9,7 @@ export default function RegisterInput({ onRegister }) {
 
     return (
         <div className="content-register">
-            <h2 style={{ fontSize: '30px' }}>Register</h2>
+            <h2 style={{ fontSize: '30px' }}>Halaman Register</h2>
             <p>Daftarkan akunmu sekarang</p>
             <form>
                 <input className="input" type="text" placeholder="Name" value={name} onChange={handleNameChange} />

@@ -31,7 +31,7 @@ function App() {
         return null;
     }
 
-    if (authUser == null) {
+    if (authUser === null) {
         return (
             <main className="background">
                 <Loading />

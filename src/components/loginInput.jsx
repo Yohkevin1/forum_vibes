@@ -8,7 +8,7 @@ export default function LoginInput({ onLogin }) {
 
     return (
         <div className="content-login">
-            <h2 style={{ fontSize: '30px' }}>Login</h2>
+            <h2 style={{ fontSize: '30px' }}>Halaman Login</h2>
             <form>
                 <input className="input" type="email" placeholder="Email" value={email} onChange={handleEmailChange} />
                 <input className="input" type="password" placeholder="Password" value={password} onChange={handlePasswordChange} />

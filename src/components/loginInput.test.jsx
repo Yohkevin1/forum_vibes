@@ -37,12 +37,12 @@ describe('LoginInput component', () => {
 
     it('should call login function when login button is clicked', async () => {
         const mockLogin = vi.fn();
-        render(<LoginInput login={mockLogin} />);
+        render(<LoginInput onLogin={mockLogin} />);
         const emailInput = await screen.getByPlaceholderText('Email');
         await userEvent.type(emailInput, 'Qp6KZ@example.com');
         const passwordInput = await screen.getByPlaceholderText('Password');
         await userEvent.type(passwordInput, 'passwordtest');
-        const loginButton = await screen.getByRole('button', { name: 'Login' });
+        const loginButton = await screen.getByText('Login');
 
         // Action
         await userEvent.click(loginButton);
