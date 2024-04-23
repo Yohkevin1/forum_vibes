@@ -8,8 +8,8 @@ export default function LoginPage() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const onLogin = ({ email, password }) => {
-        dispatch(asyncSetAuthUser({ email, password }));
+    const onLogin = ({ password }) => {
+        dispatch(asyncSetAuthUser({password }));
         navigate('/');
     };
 
