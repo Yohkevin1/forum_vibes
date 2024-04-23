@@ -16,7 +16,7 @@ export default function LoginPage() {
     return (
         <div className="container_register_login">
             <aside className="side">
-                <h1 className="title">ForumVibes APP</h1>
+                <h1 className="title">ForumVibes</h1>
                 <p>Sudah punya akun? <Link to="/register">Register</Link></p>
             </aside>
             <LoginInput onLogin={onLogin} />
