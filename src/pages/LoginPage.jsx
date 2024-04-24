@@ -18,7 +18,7 @@ function LoginPage() {
                 <h1><FaForumbee /></h1>
             </header>
             <article className="login-page__main">
-                <h2>ForumVibes App
+                <h2>ForumVibes Apps
                 </h2>
                 <LoginInput login={onLogin} />
                 <p> Don&apos;t have an account? {' '} <Link to="/register">Register</Link>
