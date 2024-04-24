@@ -18,6 +18,7 @@ export default function ThreadDetailPage() {
 
     const onCommentSubmit = ({content}) => {
         dispatch(asyncAddComment({ id, content }));
+        dispatch(asyncReceiveThreadDetail(id));
     };
 
     if (!threadDetail) {
