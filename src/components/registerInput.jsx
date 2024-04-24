@@ -2,25 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import useInput from '../hooks/useInput';
 
-export default function RegisterInput({ onRegister }) {
-    const [name, handleNameChange] = useInput('');
-    const [email, handleEmailChange] = useInput('');
-    const [password, handlePasswordChange] = useInput('');
+function RegisterInput({ register }) {
+    const [name, onNameChange] = useInput('');
+    const [email, onEmailChange] = useInput('');
+    const [password, onPasswordChange] = useInput('');
 
     return (
-        <div className="content-register">
-            <h2 style={{ fontSize: '30px' }}>Halaman Register</h2>
-            <p>Daftarkan akunmu sekarang</p>
-            <form>
-                <input className="input" type="text" placeholder="Name" value={name} onChange={handleNameChange} />
-                <input className="input" type="email" placeholder="Email" value={email} onChange={handleEmailChange} />
-                <input className="input" type="password" placeholder="Password" value={password} onChange={handlePasswordChange} />
-                <button className="button_register" onClick={() => onRegister({ name, email, password })}>Register</button>
-            </form>
-        </div>
+        <form className="register-input">
+            <input type="text" value={name} onChange={onNameChange} placeholder="Name" />
+            <input type="email" value={email} onChange={onEmailChange} placeholder="Email" />
+            <input type="password" value={password} onChange={onPasswordChange} placeholder="Password" />
+            <button type="button" onClick={() => register({ name, email, password })}>Register</button>
+        </form>
     );
 }
 
 RegisterInput.propTypes = {
-    onRegister: PropTypes.func.isRequired,
+    register: PropTypes.func.isRequired,
 };
+
+export default RegisterInput;

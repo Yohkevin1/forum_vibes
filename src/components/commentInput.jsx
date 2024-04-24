@@ -1,27 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {useDispatch} from 'react-redux';
 import useInput from '../hooks/useInput';
-import {asyncAddComment} from '../states/comment/action';
 
-export default function CommentInput({threadId}) {
+export default function CommentInput({submitComment}) {
     const [content, handleContent] = useInput('');
-    const dispatch = useDispatch();
 
-    const onCommentSubmit = () => {
-        dispatch(asyncAddComment({ id: threadId, content }));
-    };
     return (
-        <div className="thread-comment__input">
-            <h3>Beri komentar</h3>
-            <form className="comment-input">
-                <textarea className="comment-input__field" value={content} onChange={handleContent}></textarea>
-                <button onClick={onCommentSubmit}>Kirim</button>
-            </form>
-        </div>
+        <form className="comment-input">
+            <textarea className="comment-input__field" placeholder="Tulis komentar..." value={content} onChange={handleContent}></textarea>
+            <button onClick={() => submitComment({content})}>Kirim</button>
+        </form>
     );
 }
 
 CommentInput.propTypes = {
-    threadId: PropTypes.string.isRequired,
+    submitComment: PropTypes.func.isRequired,
 };

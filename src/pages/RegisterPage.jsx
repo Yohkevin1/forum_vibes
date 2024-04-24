@@ -1,27 +1,33 @@
 import React from 'react';
+import { FaForumbee } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { asynRegisterUser } from '../states/users/action';
-import RegisterInput from '../components/registerInput';
+import {useDispatch} from 'react-redux';
+import RegisterInput from '../components/RegisterInput';
+import {asynRegisterUser} from '../states/users/action';
 
-export default function RegisterPage() {
-    const dispatch = useDispatch();
+function RegisterPage() {
     const navigate = useNavigate();
+    const dispatch = useDispatch(); // @TODO: get dispatch function from store
 
     const onRegister = ({ name, email, password }) => {
         dispatch(asynRegisterUser({ name, email, password }));
-        navigate('/login');
+        navigate('/');
     };
 
     return (
-        <div className="container_register_login">
-            <aside className="side">
-                <h1 className="title">ForumVibes</h1>
-                <p>
-                    Sudah punya akun?<Link to="/login">Login</Link>
+        <section className="register-page">
+            <header className="register-page__hero">
+                <h1><FaForumbee /></h1>
+            </header>
+            <article className="register-page__main">
+                <h2>Buat Akun Kamu</h2>
+                <RegisterInput register={onRegister} />
+
+                <p> Already have an account? {' '} <Link to="/">Login</Link>
                 </p>
-            </aside>
-            <RegisterInput onRegister={onRegister} />
-        </div>
+            </article>
+        </section>
     );
 }
+
+export default RegisterPage;

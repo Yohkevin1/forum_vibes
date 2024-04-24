@@ -18,7 +18,8 @@ export default function ThreadAddPage() {
     };
 
     return (
-        <div className="background" style={{backgroundColor: 'var(--warna_main)', minHeight: '85vh'}}>
+        <div className="container_created_thread">
+            <h2>Buat Diskusi Baru</h2>
             <ThreadInput onAddThread={onAddThread} />
         </div>
     );

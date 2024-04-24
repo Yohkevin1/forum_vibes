@@ -1,18 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import PropsTypes from 'prop-types';
 
-export default function Navigation({ signOut }) {
+function Navigation({ signOut }) {
     return (
         <div className="navigation">
-            <Link to="/" style={{ textDecoration: 'none' }}>
-                <h1 className="title">ForumVibes</h1>
-            </Link>
+            <nav>
+                <Link to="/">ForumVibes</Link>
+            </nav>
             <button type="button" onClick={signOut}>Sign out</button>
         </div>
     );
 }
 
 Navigation.propTypes = {
-    signOut: PropsTypes.func.isRequired,
+    signOut: PropTypes.func.isRequired,
 };
+
+export default Navigation;

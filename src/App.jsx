@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { asyncPreloadProcess } from './states/isPreload/action';
-import { asyncUnsetAuthUser } from './states/authUser/action';
-import RegisterPage from './pages/RegisterPage';
+import {useDispatch, useSelector} from 'react-redux';
+import Loading from './components/Loading';
 import LoginPage from './pages/LoginPage';
-import Navigation from './components/navigation';
 import HomePage from './pages/HomePage';
+import Navigation from './components/Navigation';
+import RegisterPage from './pages/RegisterPage';
 import ThreadAddPage from './pages/ThreadAddPage';
 import ThreadDetailPage from './pages/ThreadDetailPage';
-import Loading from './components/Loading';
+import {asyncPreloadProcess} from './states/isPreload/action';
+import {asyncUnsetAuthUser} from './states/authUser/action';
 
 function App() {
     const {
@@ -33,30 +33,34 @@ function App() {
 
     if (authUser === null) {
         return (
-            <main className="background">
+            <>
                 <Loading />
-                <Routes>
-                    <Route path="/*" element={<RegisterPage />} />
-                    <Route path="/login" element={<LoginPage />} />
-                </Routes>
-            </main>
+                <main>
+                    <Routes>
+                        <Route path="/*" element={<LoginPage />} />
+                        <Route path="/register" element={<RegisterPage />} />
+                    </Routes>
+                </main>
+            </>
         );
     }
 
     return (
-        <div>
+        <>
             <Loading />
-            <header>
-                <Navigation signOut={onSignOut} />
-            </header>
-            <main>
-                <Routes>
-                    <Route path="/" element={<HomePage />} />
-                    <Route path="/thread/add" element={<ThreadAddPage />} />
-                    <Route path="/thread/:id" element={<ThreadDetailPage />} />
-                </Routes>
-            </main>
-        </div>
+            <div className="app-container">
+                <header>
+                    <Navigation authUser={authUser} signOut={onSignOut} />
+                </header>
+                <main>
+                    <Routes>
+                        <Route path="/" element={<HomePage />} />
+                        <Route path="/thread/add" element={<ThreadAddPage />} />
+                        <Route path="/thread/:id" element={<ThreadDetailPage />} />
+                    </Routes>
+                </main>
+            </div>
+        </>
     );
 }
 

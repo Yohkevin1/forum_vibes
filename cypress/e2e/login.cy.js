@@ -4,11 +4,12 @@
  *   - should display alert when email is empty
  *   - should display alert when password is empty
  *   - should display alert when email and password are wrong
+ *   - should be able to login
  */
 
 describe('Login spec', () => {
     it('should display login page correctly', () => {
-        cy.visit('http://localhost:5173/login');
+        cy.visit('http://localhost:5173/');
 
         cy.get('input[type="email"]').should('have.attr', 'placeholder', 'Email');
         cy.get('input[type="password"]').should('have.attr', 'placeholder', 'Password');
@@ -16,7 +17,7 @@ describe('Login spec', () => {
     });
 
     it('should display alert when email is empty', () => {
-        cy.visit('http://localhost:5173/login');
+        cy.visit('http://localhost:5173/');
         cy.get('button').contains(/^Login$/).click();
         cy.on('window:alert', (str) => {
             expect(str).to.equal('"email" is not allowed to be empty');
@@ -24,7 +25,7 @@ describe('Login spec', () => {
     });
 
     it('should display alert when password is empty', () => {
-        cy.visit('http://localhost:5173/login');
+        cy.visit('http://localhost:5173/');
         cy.get('input[type="email"]').type('Qp6KZ@example.com');
         cy.get('button').contains(/^Login$/).click();
         cy.on('window:alert', (str) => {
@@ -33,12 +34,20 @@ describe('Login spec', () => {
     });
 
     it('should display alert when email and password are wrong', () => {
-        cy.visit('http://localhost:5173/login');
+        cy.visit('http://localhost:5173/');
         cy.get('input[type="email"]').type('Qp6KZ@example.com');
         cy.get('input[type="password"]').type('passwordtest');
         cy.get('button').contains(/^Login$/).click();
         cy.on('window:alert', (str) => {
             expect(str).to.equal('Wrong email or password');
         });
+    });
+
+    it('should be able to login', () => {
+        cy.visit('http://localhost:5173/');
+        cy.get('input[type="email"]').type('Qp6KZ@example.com');
+        cy.get('input[type="password"]').type('passwordtest');
+        cy.get('button').contains(/^Login$/).click();
+        cy.get('button').contains('Sign out').should('be.visible');
     });
 });

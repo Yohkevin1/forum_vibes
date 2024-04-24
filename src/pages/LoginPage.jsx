@@ -1,25 +1,31 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { FaForumbee } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import LoginInput from '../components/LoginInput';
 import { asyncSetAuthUser } from '../states/authUser/action';
-import LoginInput from '../components/loginInput';
 
-export default function LoginPage() {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+function LoginPage() {
+    const dispatch = useDispatch(); // @TODO: get dispatch function from store
 
     const onLogin = ({ email, password }) => {
         dispatch(asyncSetAuthUser({ email, password }));
-        navigate('/');
     };
 
     return (
-        <div className="container_register_login">
-            <aside className="side">
-                <h1 className="title">ForumVibes</h1>
-                <p>Sudah punya akun? <Link to="/register">Register</Link></p>
-            </aside>
-            <LoginInput onLogin={onLogin} />
-        </div>
+        <section className="login-page">
+            <header className="login-page__hero">
+                <h1><FaForumbee /></h1>
+            </header>
+            <article className="login-page__main">
+                <h2>Forum Vibes
+                </h2>
+                <LoginInput login={onLogin} />
+                <p> Don&apos;t have an account? {' '} <Link to="/register">Register</Link>
+                </p>
+            </article>
+        </section>
     );
 }
+
+export default LoginPage;
