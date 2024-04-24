@@ -1,3 +1,12 @@
+/**
+ * authUser action scenario test
+ *  - should dispatch action correctly when data fetching success
+ *  -should dispatch action correctly when data fetching failed
+ *
+ * asyncUnsetAuthUser scenario test
+ *  - should dispatch action correctly when data fetching success
+ */
+
 import { describe, beforeEach, afterEach, it, vi, expect } from 'vitest';
 import { hideLoading, showLoading } from 'react-redux-loading-bar';
 import api from '../../utils/api';
