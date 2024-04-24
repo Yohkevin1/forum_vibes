@@ -1,3 +1,9 @@
+/**
+ * asyncPreloadProcess action scenario test
+ * - should dispatch action correctly when data fetching success
+ * - dispatches the correct actions when fetching own profile fails
+ */
+
 import { describe, beforeEach, afterEach, it, vi, expect } from 'vitest';
 import { hideLoading, showLoading } from 'react-redux-loading-bar';
 import api from '../../utils/api';
