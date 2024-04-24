@@ -44,22 +44,24 @@ describe('threadInput component', () => {
     });
 
     it('should call addThread function when add button is clicked', async () => {
-        const onAddThread = vi.fn();
-        render(<ThreadInput onAddThread={onAddThread} />);
-        const judulInput = await screen.getByPlaceholderText('Masukkan judul');
-        await userEvent.type(judulInput, 'Thread Title');
-        const categoryInput = await screen.getByPlaceholderText('Masukkan kategori');
-        await userEvent.type(categoryInput, 'Thread Category');
+        const mockSubmitThread = vi.fn();
+        render(<ThreadInput onAddThread={mockSubmitThread} />);
+        const titleInput = await screen.getByPlaceholderText('Masukkan judul');
+        await userEvent.type(titleInput, 'Thread Title');
         const bodyInput = await screen.getByPlaceholderText('Masukkan deskripsi');
         await userEvent.type(bodyInput, 'Thread Body');
+        const categoryInput = await screen.getByPlaceholderText('Masukkan kategori');
+        await userEvent.type(categoryInput, 'Thread Category');
         const addButton = await screen.getByText('Buat');
 
+        // Action
         await userEvent.click(addButton);
 
-        expect(onAddThread).toBeCalledWith({
+        // Assert
+        expect(mockSubmitThread).toBeCalledWith({
             title: 'Thread Title',
-            category: 'Thread Category',
             body: 'Thread Body',
+            category: 'Thread Category',
         });
     });
 });
